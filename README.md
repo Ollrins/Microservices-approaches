@@ -182,9 +182,10 @@ text
 <p align="center">
   <img src="S/S2.png" width="900"/>
   <br>
-</p>
+</p> <br>
 #### Структура проекта:
-<p align="center">
-  <img src="S/S3.png" width="400"/>
+
+<br> <p align="center">
+  <img src="S/S3.png" width="350"/>
   <br>
 </p>
