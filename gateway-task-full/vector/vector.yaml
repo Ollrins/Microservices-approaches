@@ -1,0 +1,36 @@
+sources:
+  docker_logs:
+    type: docker_logs
+    docker_host: "unix:///var/run/docker.sock"
+    include_containers:
+      - security-service
+      - uploader-service
+      - api-gateway
+      - minio-storage
+
+transforms:
+  clean_logs:
+    type: remap
+    inputs: ["docker_logs"]
+    source: |
+      # Удаляем проблемное поле label
+      del(.label)
+
+sinks:
+  elasticsearch:
+    type: elasticsearch
+    inputs: ["clean_logs"]
+    endpoints: ["http://elasticsearch:9200"]
+    api_version: "v7"
+    compression: "gzip"
+    encoding:
+      except_fields: ["message"]
+    bulk:
+      index: "app-logs-%Y-%m-%d"
+    batch:
+      max_events: 1
+      timeout_secs: 1
+
+api:
+  enabled: true
+  address: "0.0.0.0:8686"

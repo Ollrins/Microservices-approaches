@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "security"
+    static_configs:
+      - targets: ["security:8081"]
+
+  - job_name: "uploader"
+    static_configs:
+      - targets: ["uploader:8082"]
+
+  - job_name: "minio"
+    static_configs:
+      - targets: ["minio:9000"]
+    metrics_path: /minio/v2/metrics/cluster
+
+  - job_name: "gateway"
+    static_configs:
+      - targets: ["gateway:80"]
