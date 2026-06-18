@@ -185,6 +185,6 @@ text
 </p>
 #### Структура проекта:
 <p align="center">
-  <img src="S/S3.png" width="900"/>
+  <img src="S/S3.png" width="400"/>
   <br>
 </p>
